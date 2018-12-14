@@ -7,7 +7,7 @@ import (
 )
 
 func TestMeter(t *testing.T) {
-	m := NewMeter(prefix.Centi, 100)
+	m := New(prefix.Centi, 100)
 	fmt.Println(m)
 	fmt.Println(m.Convert(prefix.No))
 }
