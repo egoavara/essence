@@ -12,10 +12,12 @@ type Requester interface {
 	Request(u *url.URL) (io.ReadCloser, error)
 }
 type FnRequester func(u *url.URL) (io.ReadCloser, error)
+
 func (s FnRequester) Request(u *url.URL) (io.ReadCloser, error) {
 	return s(u)
 }
-var Standard FnRequester= func (u *url.URL) (io.ReadCloser, error) {
+
+var Standard FnRequester = func(u *url.URL) (io.ReadCloser, error) {
 	switch u.Scheme {
 	case "http":
 		// http server
@@ -37,10 +39,9 @@ var Standard FnRequester= func (u *url.URL) (io.ReadCloser, error) {
 		return f, nil
 	case "data":
 		sd := NewRFC2497(u)
-		if sd != nil{
+		if sd != nil {
 			return sd, nil
 		}
 	}
 	return nil, errors.Errorf("Unsupported scheme '%s'", u.Scheme)
 }
-

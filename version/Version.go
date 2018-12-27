@@ -38,36 +38,36 @@ type Version struct {
 	Patch uint
 }
 
-func New(v ... uint) Version {
+func New(v ...uint) Version {
 	switch len(v) {
 	case 0:
 		return Invalid
 	case 1:
 		return Version{
-			Major:v[0],
-			Minor:Undefined,
-			Patch:Undefined,
+			Major: v[0],
+			Minor: Undefined,
+			Patch: Undefined,
 		}
 	case 2:
 		return Version{
-			Major:v[0],
-			Minor:v[1],
-			Patch:Undefined,
+			Major: v[0],
+			Minor: v[1],
+			Patch: Undefined,
 		}
 	case 3:
 		fallthrough
 	default:
 		return Version{
-			Major:v[0],
-			Minor:v[1],
-			Patch:v[2],
+			Major: v[0],
+			Minor: v[1],
+			Patch: v[2],
 		}
 
 	}
 }
 func Parse(version string) Version {
 	temp := New()
-	if err := temp.UnmarshalJSON([]byte(`"` + version + `"`)); err != nil{
+	if err := temp.UnmarshalJSON([]byte(`"` + version + `"`)); err != nil {
 		return Invalid
 	}
 	return temp
@@ -95,7 +95,7 @@ func (s Version) MarshalJSON() ([]byte, error) {
 }
 func (s *Version) UnmarshalJSON(data []byte) error {
 	var datastr string
-	if err := json.Unmarshal(data, &datastr); err != nil{
+	if err := json.Unmarshal(data, &datastr); err != nil {
 		return errors.WithMessage(ErrorVersionString, string(data))
 	}
 	//

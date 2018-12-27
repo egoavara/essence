@@ -1,6 +1,7 @@
 package prefix
 
 type Prefix uint8
+
 func (s Prefix) String() string {
 	switch s {
 	case Yotta:
@@ -142,6 +143,7 @@ func (s Prefix) Exponent() int {
 	}
 	panic("unreachable")
 }
+
 const (
 	Yotta Prefix = iota
 	Zetta Prefix = iota

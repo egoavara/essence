@@ -6,8 +6,8 @@ import (
 )
 
 type StepSpline struct {
-	x    []float32
-	fx   []float32
+	x  []float32
+	fx []float32
 }
 
 func NewStepSpline(x []float32, fx []float32) (*StepSpline, error) {
@@ -21,8 +21,8 @@ func NewStepSpline(x []float32, fx []float32) (*StepSpline, error) {
 		return nil, errors.New("Unsorted data")
 	}
 	return &StepSpline{
-		x:    x,
-		fx:   fx,
+		x:  x,
+		fx: fx,
 	}, nil
 }
 func (s *StepSpline) Get(x float32) float32 {
@@ -33,7 +33,7 @@ func (s *StepSpline) Get(x float32) float32 {
 			break
 		}
 	}
-	i = iclamp(i-1, 0, len(s.fx) - 1)
+	i = iclamp(i-1, 0, len(s.fx)-1)
 	return s.fx[i]
 }
 

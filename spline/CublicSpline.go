@@ -8,17 +8,17 @@ import (
 )
 
 type CubicSpline struct {
-	x []float32
-	fx []float32
-	ddfx   []float32
-	fns    []func(x float32) float32
+	x    []float32
+	fx   []float32
+	ddfx []float32
+	fns  []func(x float32) float32
 }
 
-func NewCubicSpline(x [] float32, fx []float32) (*CubicSpline, error) {
-	if len(x) < 3{
+func NewCubicSpline(x []float32, fx []float32) (*CubicSpline, error) {
+	if len(x) < 3 {
 		return nil, errors.New("At least 3 points for CubicSpline")
 	}
-	if len(x) != len(fx){
+	if len(x) != len(fx) {
 		return nil, errors.New("x.len != fx.len")
 	}
 	if !sort.IsSorted(F32Slice(x)) {
@@ -65,15 +65,15 @@ func NewCubicSpline(x [] float32, fx []float32) (*CubicSpline, error) {
 			fx[i],
 			fx[i+1],
 			ddf[i],
-			ddf[i + 1],
+			ddf[i+1],
 		)
 	}
-	fns[counts-2] = mkFunc(x[counts-2], x[counts-1], fx[counts-2], fx[counts-1], ddf[counts - 2], ddf[counts - 1])
+	fns[counts-2] = mkFunc(x[counts-2], x[counts-1], fx[counts-2], fx[counts-1], ddf[counts-2], ddf[counts-1])
 	return &CubicSpline{
-		x: x,
-		fx : fx,
-		ddfx:   ddf,
-		fns:    fns,
+		x:    x,
+		fx:   fx,
+		ddfx: ddf,
+		fns:  fns,
 	}, nil
 }
 func (s *CubicSpline) Get(x float32) float32 {
@@ -84,7 +84,7 @@ func (s *CubicSpline) Get(x float32) float32 {
 			break
 		}
 	}
-	i = iclamp(i-1, 0, len(s.fns) - 1)
+	i = iclamp(i-1, 0, len(s.fns)-1)
 	return s.fns[i](x)
 }
 func (s *CubicSpline) Range() (min, max float32) {

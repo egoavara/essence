@@ -1,6 +1,5 @@
 package axis
 
-
 type Axis uint8
 
 const (
@@ -8,7 +7,7 @@ const (
 	Y Axis = iota
 	Z Axis = iota
 )
-const(
+const (
 	// Alias
 	Depth      = X
 	Horizontal = Z

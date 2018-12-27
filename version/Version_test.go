@@ -48,10 +48,10 @@ func TestVersion_UnmarshalJSON(t *testing.T) {
 }
 `))
 		var temp Temp
-		if err := dec.Decode(&temp); err != nil{
+		if err := dec.Decode(&temp); err != nil {
 			t.Error(err)
 		}
-		if temp.I != 1 || temp.S != "hello, world!" || temp.V != New(1,2,3){
+		if temp.I != 1 || temp.S != "hello, world!" || temp.V != New(1, 2, 3) {
 			t.Error(temp, "Invalid Parsed")
 		}
 	})
@@ -64,7 +64,7 @@ func TestVersion_UnmarshalJSON(t *testing.T) {
 }
 `))
 		var temp Temp
-		if err := dec.Decode(&temp); err == nil{
+		if err := dec.Decode(&temp); err == nil {
 			t.Error("Must be fail, but success", temp)
 		}
 	})
@@ -77,7 +77,7 @@ func TestVersion_UnmarshalJSON(t *testing.T) {
 }
 `))
 		var temp Temp
-		if err := dec.Decode(&temp); err == nil{
+		if err := dec.Decode(&temp); err == nil {
 			t.Error("Must be fail, but success", temp)
 		}
 	})
@@ -90,39 +90,39 @@ func TestVersion_MarshalJSON(t *testing.T) {
 	}
 	t.Run("Success test", func(t *testing.T) {
 		var testset = `{"i":1,"s":"hello, world!","v":"1.2.3"}`
-		var temp  = Temp{
+		var temp = Temp{
 			I: 1,
 			S: "hello, world!",
-			V: New(1,2,3),
+			V: New(1, 2, 3),
 		}
-		if data, err := json.Marshal(temp); err != nil && string(data) == testset{
+		if data, err := json.Marshal(temp); err != nil && string(data) == testset {
 			t.Error(err)
 		}
 	})
 	t.Run("Fail test", func(t *testing.T) {
-		var temp  = Temp{
+		var temp = Temp{
 			I: 1,
 			S: "hello, world!",
 			V: New(),
 		}
 
-		if data, err := json.Marshal(temp); err == nil{
+		if data, err := json.Marshal(temp); err == nil {
 			t.Error("Parsing success, but must be fail " + string(data))
 		}
 	})
 
 }
 func TestVersion_Stringer(t *testing.T) {
-	if New().String() != _Invalid_text{
+	if New().String() != _Invalid_text {
 		t.Error("invalid fail")
 	}
-	if New(1).String() != "1"{
+	if New(1).String() != "1" {
 		t.Error("'1' fail")
 	}
-	if New(1, 2).String() != "1.2"{
+	if New(1, 2).String() != "1.2" {
 		t.Error("'1.2' fail")
 	}
-	if New(1, 2, 3).String() != "1.2.3"{
+	if New(1, 2, 3).String() != "1.2.3" {
 		t.Error("'1.2.3' fail")
 	}
 }

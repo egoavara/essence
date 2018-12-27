@@ -10,10 +10,10 @@ const (
 )
 const (
 	// Aliases
-	Center = Zero
-	Left   = Negative
-	Back   = Negative
-	Bottom = Negative
+	Center  = Zero
+	Left    = Negative
+	Back    = Negative
+	Bottom  = Negative
 	Right   = Positive
 	Forward = Positive
 	Top     = Positive
